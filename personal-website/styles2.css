@@ -13,6 +13,7 @@
     
 }
 
+
 .gold {
     color: #ffae00;
 }
@@ -20,9 +21,9 @@
 .container {
     transition: background-color .5s ease;
     background-color: #000000;
-    overflow-x: hidden;
-    overflow-y: scroll;
     height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
     scroll-snap-type: y mandatory;
     scroll-snap-stop: always;
 }
@@ -36,10 +37,13 @@
     scroll-snap-align: center;
     scroll-snap-stop: always;
 }
+
+
 body {
     background-color: #000000;
     /*c4d7e28*/
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .landing {
@@ -259,3 +263,392 @@ body {
     object-fit: cover;
     margin-left: 35px;
 }
+
+label.popup {
+    font-size: 2vw;
+    color:white;
+    transition: font-size .75s ease;
+}
+
+label.popup:hover {
+    font-size: 2.5vw;
+}
+
+input {
+    display: none;
+}
+
+.proj-popup {
+    display: block;
+    width: 90vw;
+    height: 90vh;
+    position: fixed;
+    left: -100%;
+    top: 5vh;
+    background-color: rgb(27, 27, 27);
+    z-index: 100;
+    overflow: scroll;
+    text-align: left;
+    border-radius: 45px;
+}
+
+.proj-popup p {
+    font-family: "Libertine";
+    font-size: 1vw;
+}
+
+.proj-wrap {
+    width: 80%;
+    position: relative;
+    left: 10%;
+    margin-bottom: 2vw;
+    color: white;
+    display: grid;
+    justify-content: center;
+}
+
+.proj-wrap img {
+    height: 20vw;
+    width: auto;
+    object-fit: contain;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.proj-head {
+    display: flex;
+    color: #ffae00;
+    align-items: center;
+    margin: 1vw 0 1vw 0;
+    border-bottom: 10px solid #ffae00;
+}
+
+.proj-head > h1 {
+    font-size: 2vw;
+}
+
+.proj-head > h2 {
+    font-size: 1vw;
+    margin-left: 1vw;
+}
+
+
+.proj-popup, .esc {
+    transition: left 1s ease;
+}
+
+.show:checked ~ .proj-popup, .show:checked ~ .esc {
+    left: 5%;
+}
+
+.esc {
+    color: white;
+    text-align: center;
+}
+
+.esc, .esc ~ .hide {
+    position: fixed;
+    top: 0vh;
+    font-size: 6vw;
+    z-index: 200;
+    left: -100%;
+    transform: translate(1800%, -10%);
+}
+
+.esc:checked ~ .proj-popup, .esc:checked ~ .esc {
+    left: -100%;
+}
+
+
+div.nnp {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+}
+
+#empty {
+    position: absolute;
+    left: 35vw;
+    bottom: 5vh;
+    scale: 0.75;
+}
+
+.content:has(:checked) ~ #empty {
+    opacity: 0;
+    left: -100vw;
+}
+
+.nnp .choice {
+    height: 100%;
+    width: 45%;
+    background-color: #ffae00;
+    display: grid;
+    position: absolute;
+    left: 0;
+}
+
+.choice h1 {
+    font: 4vw BS;
+    color: black;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    top: 25%;
+}
+
+.choice div {
+    width: 100%;
+    display: grid;
+    height: 30vw;
+    position: absolute;
+    right: 0;
+    bottom: 2vh;
+    align-content: end;
+}
+
+.choice label {
+    cursor: pointer;
+    width: 100%;
+    height: 3vw;
+    background-color: rgb(255, 255, 255);
+    font: 1vw BS;
+    color: rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2% 0;
+    transition: all 0.5s;
+    z-index: 2;
+}
+
+.choice label:hover, 
+:has(#nnp-fan:checked) ~ .choice div label.nnp-fan, 
+:has(#nnp-sai:checked) ~ .choice div label.nnp-sai, 
+:has(#nnp-web:checked) ~ .choice div label.nnp-web, 
+:has(#nnp-sud:checked) ~ .choice div label.nnp-sud, 
+:has(#nnp-sto:checked) ~ .choice div label.nnp-sto, 
+:has(#nnp-gam:checked) ~ .choice div label.nnp-gam {
+    background-color: #000000;
+    color: white;
+}
+
+.nnp .content {
+    width: 55%;
+    left: 45%;
+    position: relative;
+    color: white;
+}
+
+.content .project {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background-size:cover;
+    position: absolute;
+    right: -100vw;
+    z-index: 1;
+    transition: all 0.5s;
+}
+
+.project img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: -100;
+}
+
+.project :not(img) {
+    position: relative;
+    top: 0;
+}
+
+#nnp-fan:checked ~ .project.fan,
+#nnp-sai:checked ~ .project.sai,
+#nnp-web:checked ~ .project.web,
+#nnp-sud:checked ~ .project.sud,
+#nnp-sto:checked ~ .project.sto,
+#nnp-gam:checked ~ .project.gam {
+    right: 0vw;
+}
+
+.project .wrap {
+    height: 100%;
+    width: 80%;
+    position: relative;
+    left: 10%;
+    font: 1vw "Segoe UI";
+    display: block;
+    overflow-y: auto;
+}
+.wrap .heading {
+    margin: 2vw 0;
+    font: 1.25vw BS;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;    
+    border-bottom: 10px solid #ffae00;
+}
+
+.heading > div {
+    display: flex;
+    
+}
+
+.heading div h2 {
+    margin-right: 25px;
+    font-size: 1vw;
+}
+
+.wrap p {
+    line-height: 200%;
+}
+
+
+#newp {
+    width: 80vw;
+    height: 100vh;
+    position: relative;
+    left: 10vw;
+}
+
+.newp .window {
+    border: 2px solid white;
+    position: absolute;
+}
+
+.window.select {
+    display: grid;
+    color: black;
+    overflow-y: auto;
+    height: 10vw;
+    top: 10vh;
+    width: 35vw;
+}
+
+.select label {
+    border: none;
+    background-color: white;
+    width: 100%;
+    height: 3vw;
+    display: flex;
+    align-items: center;
+    transition: background-color .5s ease;
+}
+
+.window.txt {
+    right: 0;
+    top: 10vh;
+
+    height: 55vh;
+    width: 40vw;
+}
+
+.window.lg {
+    bottom: 10vh;
+    height: 25vw;
+    width: 35vw;
+    left: 0vw;
+    
+}
+
+.wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.wrap label {
+    width: 10vw;
+    height: 10vw;
+    border: 2px solid #ffae00;
+}
+
+.wrap label input {
+    
+}
+
+.wrap label img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.menu {
+    border: 2px solid red;
+    width: 40vw;
+    position: absolute;
+    height: 10vw;
+    right: 0;
+    bottom: 10vh;
+}
+
+.window.lg img, .window.sm img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+}
+
+
+
+.select label:hover {
+    background-color: #d1d1d1;
+}
+
+#rfan:checked ~ :nth-child(7) {
+    background-color: #ffae00 !important;
+}
+
+#rsail:checked ~ :nth-child(8) {
+    background-color: #ffae00 !important;
+}
+
+#rweb:checked ~ :nth-child(9) {
+    background-color: #ffae00 !important;
+}
+
+#rsud:checked ~ :nth-child(10) {
+    background-color: #ffae00 !important;
+}
+
+#rsto:checked ~ :nth-child(11) {
+    background-color: #ffae00 !important;
+}
+
+#rgame:checked ~ :nth-child(12) {
+    background-color: #ffae00 !important;
+}
+
+:has(#t:checked) ~ .window.lg div {
+    :nth-child(1) {
+        z-index: 999;
+    }
+
+    :not(:nth-child(1)) {
+        z-index: -1;
+    }
+}
+
+:has(#a:checked) ~ .window.lg div {
+    :nth-child(2) {
+        z-index: 999;
+    }
+
+    :not(:nth-child(2)) {
+        z-index: -1;
+    }
+}
+
+:has(#rfan:checked) ~ .window.lg > :nth-child(1) {
+    display:block;
+}
+
